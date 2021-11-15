@@ -1,9 +1,10 @@
 FROM alpine
 RUN apk add --update ansible
-RUN mkdir workdir
-WORKDIR /workdir
-COPY inventory.yml /workdir
-COPY docker-playbook.yml /workdir
-COPY entrypoint.sh /workdir
-RUN chmod +x /workdir/entrypoint.sh
-CMD ["/workdir/entrypoint.sh"]
+RUN mkdir -p /github/workspace
+WORKDIR /github/workspace
+COPY inventory.yml /github/workspace/
+COPY docker-playbook.yml /github/workspace/
+COPY id_rsa-encrypted /github/workspace/
+COPY entrypoint.sh /github/workspace/
+RUN chmod +x /github/workspace//entrypoint.sh
+CMD ["/github/workspace//entrypoint.sh"]
