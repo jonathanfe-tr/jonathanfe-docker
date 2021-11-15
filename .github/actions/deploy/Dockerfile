@@ -1,6 +1,8 @@
 FROM alpine
 RUN apk add --update ansible
-COPY inventory.yml /.
-COPY docker-playbook.yml /.
-COPY entrypoint.sh /.
-ENTRYPOINT ["entrypoint.sh"]
+RUN mkdir workdir
+WORKDIR /workdir
+COPY inventory.yml /workdir
+COPY docker-playbook.yml /workdir
+COPY entrypoint.sh /workdir
+CMD ["/workdir/entrypoint.sh"]
