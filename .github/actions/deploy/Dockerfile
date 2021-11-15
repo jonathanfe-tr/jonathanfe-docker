@@ -6,5 +6,6 @@ COPY inventory.yml /github/workspace/
 COPY docker-playbook.yml /github/workspace/
 COPY id_rsa-encrypted /github/workspace/
 COPY entrypoint.sh /github/workspace/
-RUN chmod +x /github/workspace//entrypoint.sh
+RUN pwd
+RUN chmod +x /github/workspace/entrypoint.sh
 CMD ["/github/workspace/entrypoint.sh"]
